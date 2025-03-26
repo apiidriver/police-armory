@@ -1,0 +1,10 @@
+CREATE TABLE IF NOT EXISTS `police_armory_items` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `job` varchar(50) NOT NULL,
+  `grade` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `label` varchar(100) NOT NULL,
+  `price` int(11) NOT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
