@@ -64,23 +64,28 @@ end)
 
 -- Remove an item from the armory (admin only)
 QBCore.Commands.Add('removearmoryitem', 'Remove item from police armory (Admin Only)', {
-    {name = 'id', help = 'Item ID in database'}
+    {name = 'job', help = 'Job name (e.g. police)'},
+    {name = 'itemname', help = 'Item name/id to remove'}
 }, true, function(source, args)
     local src = source
     local Player = QBCore.Functions.GetPlayer(src)
     
     if Player.PlayerData.job.grade.level >= Config.AdminRanks[1] then
-        local id = tonumber(args[1])
+        local job = args[1]
+        local itemName = args[2]
         
-        MySQL.Async.execute('DELETE FROM police_armory_items WHERE id = ?', {id}, function(rowsChanged)
-            if rowsChanged > 0 then
-                TriggerClientEvent('QBCore:Notify', src, 'Item removed from armory', 'success')
-                -- Notify all clients to refresh their custom items
-                TriggerClientEvent('qb-policearmory:client:refreshCustomItems', -1)
-            else
-                TriggerClientEvent('QBCore:Notify', src, 'Failed to remove item', 'error')
+        MySQL.Async.execute('DELETE FROM police_armory_items WHERE job = ? AND name = ?', 
+            {job, itemName}, 
+            function(rowsChanged)
+                if rowsChanged > 0 then
+                    TriggerClientEvent('QBCore:Notify', src, 'Item removed from armory', 'success')
+                    -- Notify all clients to refresh their custom items
+                    TriggerClientEvent('qb-policearmory:client:refreshCustomItems', -1)
+                else
+                    TriggerClientEvent('QBCore:Notify', src, 'Failed to remove item. Check if job and item name are correct.', 'error')
+                end
             end
-        end)
+        )
     else
         TriggerClientEvent('QBCore:Notify', src, 'You do not have permission', 'error')
     end
