@@ -1,0 +1,299 @@
+:root {
+    --bg-dark: #020617;
+    --bg-card: rgba(15, 23, 42, 0.8);
+    --accent-blue: #3b82f6;
+    --accent-cyan: #06b6d4;
+    --accent-green: #22c55e;
+    --accent-red: #ef4444;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --border-color: rgba(255, 255, 255, 0.1);
+    --glass-bg: rgba(15, 23, 42, 0.9);
+    --glass-border: rgba(255, 255, 255, 0.08);
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: transparent !important;
+    overflow: hidden;
+    font-family: 'Outfit', sans-serif;
+    color: var(--text-primary);
+}
+
+#armory-container {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 1000px;
+    height: 650px;
+    background: var(--bg-dark);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+#armory-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 30px;
+    background: rgba(255, 255, 255, 0.02);
+    border-bottom: 1px solid var(--glass-border);
+}
+
+#header-left {
+    display: flex;
+    align-items: center;
+}
+
+#armory-header h1 {
+    margin: 0;
+    font-size: 20px;
+    letter-spacing: 2px;
+    font-weight: 800;
+    color: var(--text-primary);
+}
+
+.header-button {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--glass-border);
+    color: var(--text-secondary);
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.header-button:hover {
+    background: var(--accent-red);
+    color: white;
+}
+
+.main-content {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+}
+
+#items-container {
+    flex: 1;
+    padding: 25px;
+    overflow-y: auto;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+#items-container::-webkit-scrollbar {
+    width: 4px;
+}
+
+#items-container::-webkit-scrollbar-thumb {
+    background: var(--glass-border);
+    border-radius: 2px;
+}
+
+#cart-container {
+    width: 320px;
+    background: var(--glass-bg);
+    border-left: 1px solid var(--glass-border);
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+}
+
+#cart-header {
+    margin-bottom: 20px;
+}
+
+#cart-header h2 {
+    margin: 0;
+    font-size: 14px;
+    color: var(--text-secondary);
+    letter-spacing: 1px;
+}
+
+#cart-count {
+    font-size: 12px;
+    color: var(--accent-cyan);
+}
+
+#cart-items {
+    flex: 1;
+    overflow-y: auto;
+    margin-bottom: 20px;
+}
+
+.empty-cart {
+    text-align: center;
+    color: var(--text-secondary);
+    margin-top: 50px;
+    font-style: italic;
+    font-size: 14px;
+}
+
+.cart-item {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--glass-border);
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cart-item-name {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.cart-item-price {
+    font-size: 12px;
+    color: var(--accent-green);
+}
+
+.remove-button {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+}
+
+.remove-button:hover {
+    color: var(--accent-red);
+}
+
+#cart-total {
+    padding-top: 15px;
+    border-top: 1px solid var(--glass-border);
+    font-weight: 800;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+#total-amount {
+    color: var(--accent-green);
+}
+
+#payment-options {
+    display: flex;
+    gap: 10px;
+}
+
+.payment-button {
+    flex: 1;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid var(--glass-border);
+    background: rgba(255, 255, 255, 0.05);
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 12px;
+}
+
+#checkout-cash:hover {
+    background: var(--accent-green);
+}
+
+#checkout-bank:hover {
+    background: var(--accent-blue);
+}
+
+/* Item Cards */
+.grade-header {
+    background: linear-gradient(90deg, var(--accent-blue), transparent);
+    padding: 10px 15px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 800;
+    margin-bottom: 15px;
+    margin-top: 25px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.armory-item {
+    background: var(--bg-card);
+    border: 1px solid var(--glass-border);
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    transition: transform 0.2s;
+}
+
+.armory-item:hover {
+    transform: translateX(5px);
+    border-color: var(--accent-blue);
+}
+
+.item-image {
+    width: 64px;
+    height: 64px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-right: 20px;
+}
+
+.item-details {
+    flex: 1;
+}
+
+.item-name {
+    font-weight: 600;
+    font-size: 16px;
+    margin-bottom: 4px;
+}
+
+.item-description {
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+.item-price {
+    font-weight: 800;
+    color: var(--accent-green);
+    margin: 0 20px;
+}
+
+.item-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.item-quantity {
+    width: 50px;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--glass-border);
+    color: white;
+    padding: 6px;
+    border-radius: 6px;
+    text-align: center;
+}
+
+.buy-button {
+    background: var(--accent-blue);
+    border: none;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.buy-button:hover {
+    filter: brightness(1.2);
+}

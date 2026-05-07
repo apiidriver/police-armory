@@ -1,11 +1,24 @@
 fx_version 'cerulean'
 game 'gta5'
 
-description 'Police Armory with NUI'
+name 'defiantArmory'
+author 'Antigravity'
+description 'Standalone High-Performance Tactical Armory'
+version '2.0.0'
+
+ui_page 'html/index.html'
+
+files {
+    'html/index.html',
+    'html/css/armory.css',
+    'html/utils.js',
+    'html/armory.js',
+    'html/img/*.png'
+}
 
 shared_scripts {
     '@ox_lib/init.lua',
-    'config.lua'
+    'shared/config.lua'
 }
 
 client_scripts {
@@ -17,13 +30,9 @@ server_scripts {
     'server/main.lua'
 }
 
-ui_page 'html/index.html'
-
-files {
-    'html/index.html',
-    'html/style.css',
-    'html/script.js',
-    'html/img/*.png'
+dependencies {
+    'ox_lib',
+    'oxmysql',
+    'ox_target',
+    'ox_inventory'
 }
-
-lua54 'yes'

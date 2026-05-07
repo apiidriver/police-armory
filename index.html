@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Defiant Armory 2.0</title>
+    <link rel="stylesheet" href="css/armory.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div id="armory-container">
+        <div id="armory-header">
+            <div id="header-left">
+                <i class="fas fa-shield-halved" style="font-size: 24px; margin-right: 15px; color: var(--accent-cyan);"></i>
+                <h1>TACTICAL ARMORY</h1>
+            </div>
+            <div id="header-right">
+                <button class="header-button" onclick="CloseUI()">X</button>
+            </div>
+        </div>
+        <div class="main-content">
+            <div id="items-container">
+                <!-- Items injected via armory.js -->
+            </div>
+            <div id="cart-container">
+                <div id="cart-header">
+                    <h2>EQUIPMENT LOADOUT</h2>
+                    <span id="cart-count">0 items</span>
+                </div>
+                <div id="cart-items">
+                    <div class="empty-cart">No assets selected</div>
+                </div>
+                <div id="cart-total">
+                    Total Requisition: $<span id="total-amount">0</span>
+                </div>
+                <div id="payment-options">
+                    <button id="checkout-cash" class="payment-button">
+                        <i class="fas fa-wallet"></i> CASH
+                    </button>
+                    <button id="checkout-bank" class="payment-button">
+                        <i class="fas fa-university"></i> BANK
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="utils.js"></script>
+    <script src="armory.js"></script>
+    <script>
+        // Standalone NUI Bridge
+        window.addEventListener('message', function(event) {
+            const data = event.data;
+            if (data.action === 'open') {
+                document.getElementById('armory-container').style.display = 'flex';
+                window.Armory.Render(data);
+            } else if (data.action === 'close') {
+                document.getElementById('armory-container').style.display = 'none';
+                window.Defiant.State.cart = [];
+            }
+        });
+
+        function CloseUI() {
+            $.post(`https://${GetParentResourceName()}/close`, JSON.stringify({}));
+        }
+
+        // Standardize hideAll for standalone use
+        window.Defiant.Utils.hideAll = CloseUI;
+    </script>
+</body>
+</html>
