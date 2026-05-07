@@ -1,5 +1,5 @@
 # police-armory
-qbcore police armory
+qbox police armory
 
 
 this is built on top of another free release from someone else
